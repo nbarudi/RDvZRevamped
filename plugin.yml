@@ -1,0 +1,6 @@
+name: RDvZ-Revamp
+version: 1.0
+main: ca.bungo.main.RDvZ
+commands:
+  admin:
+    usage: /admin

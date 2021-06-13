@@ -1,0 +1,22 @@
+#
+#Welcome to the RDvZ Config File! Here you can change settings like World Names, Cooldowns, and many others!
+#
+#If you need to change a setting durring a live game no worries! Just run /admin reload and the plugin will update everything for you!
+#
+#If you have any extra settings you'd like to be added to this file, just send me a DM and I'll see what I can do!
+#                                                   nbarudi#0001
+#
+#Goodluck running your games!
+#And have fun!
+
+#
+#Setting Heirarchy
+#
+Settings:
+   #Do not set this to the same world as in your server.properties it will cause problems!
+   WorldName: RDvZ_World
+   LobbyName: RDvZ_Lobby
+   Cooldowns:
+       ItemA: 40 #Time in seconds
+       ItemB: 10
+       ItemC: 5
