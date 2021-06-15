@@ -28,7 +28,7 @@ public class StartArgument extends AdminArgument{
 		player.getInventory().addItem(magma);
 		
 		pl.currentRound.setGameStarted(true);
-		Bukkit.broadcastMessage(ChatManager.formatColor("&7[&aRDvZ&7] &d6It's time to play.... &bDwarves &7Vs &2Zombies&d!"));
+		Bukkit.broadcastMessage(ChatManager.formatColor("&7[&aRDvZ&7] &dIt's time to play.... &bDwarves &7Vs &2Zombies&d!"));
 		
 		player.sendMessage("Game has started!");
 	}

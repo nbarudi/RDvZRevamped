@@ -71,6 +71,7 @@ public class PlayerManager implements Listener {
 			dData.setMana(data.getMana());
 			data.setDeathData(dData);
 		}
+		data.claimedClasses = false;
 	}
 
 }

@@ -14,6 +14,7 @@ import ca.bungo.cmds.admin.arguments.MoreArgument;
 import ca.bungo.cmds.admin.arguments.PunishArgument;
 import ca.bungo.cmds.admin.arguments.ReloadArgument;
 import ca.bungo.cmds.admin.arguments.RestartArgument;
+import ca.bungo.cmds.admin.arguments.StartArgument;
 import ca.bungo.cmds.admin.arguments.WorldArgument;
 import ca.bungo.main.RDvZ;
 
@@ -34,6 +35,7 @@ public class AdminCommand implements CommandExecutor {
     	arguments.add(new WorldArgument(plugin, "world"));
     	arguments.add(new MoreArgument(plugin, "more"));
     	arguments.add(new ReloadArgument(plugin, "reload"));
+    	arguments.add(new StartArgument(plugin, "start"));
     	
     	aa = new PunishArgument(plugin, "manage");
     	arguments.add(aa);

@@ -18,20 +18,22 @@ public class ExampleItem extends CustomItem {
 		im.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bExample Item") + "");
 		this.setItemMeta(im);
 	}
-	
+
 	@Override
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
-		if(event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null)
-			return;
-		if(!onCooldown(event.getPlayer(), "Example")) {
-			Cooldown cd = pl.cm.giveCooldown(event.getPlayer(), 200);
-			pl.currentRound.getPlayerData(event.getPlayer().getName()).addCooldown("Example", cd);
-		}else
-			return;
-		if(event.getItem().getItemMeta().getDisplayName().equals(this.getItemMeta().getDisplayName())) {
-			System.out.println("Testing!");
-		}
+		// TODO Auto-generated method stub
+				if(event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null)
+					return;
+				if(!event.getItem().getItemMeta().getDisplayName().equals(this.getItemMeta().getDisplayName()))
+					return;
+				if(!onCooldown(event.getPlayer(), "Example")) {
+					Cooldown cd = pl.cm.giveCooldown(event.getPlayer(), 200);
+					pl.currentRound.getPlayerData(event.getPlayer().getName()).addCooldown("Example", cd);
+				}else
+					return;
 	}
+
+	
 
 }

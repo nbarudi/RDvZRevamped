@@ -58,10 +58,10 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		player.sendMessage(ChatColor.BLUE + "You are currently using: " + ChatColor.YELLOW + this.name);
 	}
 	
-	public boolean verifyItem(ItemStack item) {
+	public boolean verifyItem(ItemStack item, String name) {
 		if(item == null || item.getItemMeta() == null || item.getItemMeta().getDisplayName() == null)
 			return false;
-		return true;
+		return item.getItemMeta().getDisplayName().equals(name);
 	}
 
 }

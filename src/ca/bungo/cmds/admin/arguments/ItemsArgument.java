@@ -22,7 +22,7 @@ public class ItemsArgument extends AdminArgument{
 		this.requiresPlayer = true;
 		
 		inv = Bukkit.createInventory(null, 54, ChatColor.GREEN + "Item List");
-		for(ItemStack item : pl.customItems) {
+		for(ItemStack item : RDvZ.customItems) {
 			inv.addItem(item);
 		}
 	}

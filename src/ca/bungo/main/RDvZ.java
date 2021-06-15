@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
+import org.bukkit.Material;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.plugin.PluginManager;
@@ -14,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ca.bungo.cmds.admin.AdminCommand;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
+import ca.bungo.modules.items.ClassClaimItem;
 import ca.bungo.modules.items.ExampleItem;
 import ca.bungo.util.FileManager;
 import ca.bungo.util.backend.cooldown.CooldownManager;
@@ -68,6 +70,7 @@ public class RDvZ extends JavaPlugin {
     
     private void registerItems() {
     	customItems.add(new ExampleItem(this));
+    	customItems.add(new ClassClaimItem(this, Material.MAGMA_CREAM));
     }
 
     private void registerCommands(){
@@ -78,6 +81,7 @@ public class RDvZ extends JavaPlugin {
     	PluginManager pm = Bukkit.getPluginManager();
     	for(CustomItem item : customItems) {
     		pm.registerEvents(item, this);
+    		System.out.println("Registered: " + item.name);
     	}
     	pm.registerEvents(new PlayerManager(this), this);
     	pm.registerEvents(new PlayerJoinLeave(this), this);
