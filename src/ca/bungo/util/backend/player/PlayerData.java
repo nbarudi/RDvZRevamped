@@ -3,6 +3,7 @@ package ca.bungo.util.backend.player;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -198,6 +199,23 @@ public class PlayerData {
 
 	public void setDeathData(DeathData deathData) {
 		this.deathData = deathData;
+	}
+	
+	@Override
+	public String toString() {
+		String toRet = "" + ChatColor.BLUE;
+		
+		toRet += ChatColor.BLUE + "Name: " + this.nick + "\n";
+		toRet += ChatColor.BLUE + "RealName: " + this.name + "\n";
+		toRet += ChatColor.BLUE + "IsDwarf: " + (this.isDwarf ? ChatColor.GREEN + "True" : ChatColor.RED + "False") + "\n";
+		toRet += ChatColor.BLUE + "IsHero: " + (this.isHero ? ChatColor.GREEN + "True" : ChatColor.RED + "False") + "\n";
+		toRet += ChatColor.BLUE + "Claimed Classes: " + (this.claimedClasses ? ChatColor.GREEN + "True" : ChatColor.RED + "False") + "\n";
+		toRet += ChatColor.BLUE + "IsOnline: " + (this.isOnline ? ChatColor.GREEN + "True" : ChatColor.RED + "False") + "\n";
+		toRet += ChatColor.BLUE + "DwarfClass: " + this.dwarfClass.toString() + "\n";
+		toRet += ChatColor.BLUE + "MonsterClass: " + this.monsterClass.toString() + "\n";
+		toRet += ChatColor.BLUE + "Mana: " + this.mana;
+		
+		return toRet;
 	}
 
 }

@@ -6,11 +6,11 @@ import ca.bungo.main.RDvZ;
 
 public class Cooldown {
 	
-	private int remainingTime;
+	private double remainingTime;
 	private int task;
 	private boolean isActive;
 	
-	public Cooldown(RDvZ pl, int ticks) {
+	public Cooldown(RDvZ pl, double ticks) {
 		remainingTime = ticks;
 		isActive = true;
 		task = Bukkit.getScheduler().scheduleSyncRepeatingTask(pl, () ->{

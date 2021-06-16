@@ -1,7 +1,8 @@
-package ca.bungo.modules.items;
+package ca.bungo.modules.items.dwarf;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import ca.bungo.main.RDvZ;
 import ca.bungo.modules.CustomItem;
+import ca.bungo.util.ItemManager;
 import ca.bungo.util.backend.player.PlayerData;
 
 public class ClassClaimItem extends CustomItem {
@@ -48,6 +50,40 @@ public class ClassClaimItem extends CustomItem {
 		
 		data.isDwarf = true;
 		data.claimedClasses = true;
+		player.getInventory().remove(item);
+		
+		
+		Random rnd = new Random();
+		
+		//25% chance of each class and 100% Builder Class
+		ItemStack builder = ItemManager.findCustomItem("Become Builder");
+		ItemStack alchem = ItemManager.findCustomItem("Become Alchemist");
+		ItemStack smith = ItemManager.findCustomItem("Become Blacksmith");
+		ItemStack tailor = ItemManager.findCustomItem("Become Tailor");
+		ItemStack baker = ItemManager.findCustomItem("Become Baker");
+		
+		giveCooldown(player, "BecomeBuilder", 1);
+		giveCooldown(player, "BecomeAlchemist", 1);
+		giveCooldown(player, "BecomeBlacksmith", 1);
+		giveCooldown(player, "BecomeTailor", 1);
+		giveCooldown(player, "BecomeBaker", 1);
+		
+		player.getInventory().addItem(builder);
+		
+		if(rnd.nextInt() > 25) {
+			player.getInventory().addItem(alchem);
+		}
+		if(rnd.nextInt() > 25) {
+			player.getInventory().addItem(smith);
+		}
+		if(rnd.nextInt() > 25) {
+			player.getInventory().addItem(tailor);
+		}
+		if(rnd.nextInt() > 25) {
+			player.getInventory().addItem(baker);
+		}
+		player.sendMessage(ChatColor.AQUA + "Claimed classes!");
+		
 		event.setCancelled(true);
 	}
 

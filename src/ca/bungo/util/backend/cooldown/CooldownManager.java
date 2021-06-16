@@ -47,11 +47,11 @@ public class CooldownManager {
 	}
 	
 	//1 Tick = 50 milliseconds
-	public Cooldown giveCooldown(Player player, int ticks) {
+	public Cooldown giveCooldown(Player player, double ticks) {
 		
 		Cooldown cooldown = new Cooldown(pl, ticks);
 		if(reflectionValid)
-			giveEffect(player, ticks);
+			giveEffect(player, (int)ticks);
 		return cooldown;
 	}
 	

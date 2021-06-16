@@ -15,8 +15,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ca.bungo.cmds.admin.AdminCommand;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
-import ca.bungo.modules.items.ClassClaimItem;
-import ca.bungo.modules.items.ExampleItem;
+import ca.bungo.modules.items.dwarf.CakeSpawner;
+import ca.bungo.modules.items.dwarf.ClassClaimItem;
+import ca.bungo.modules.items.dwarf.Classbook;
+import ca.bungo.modules.items.dwarf.dwarfclasses.AlchemistClass;
+import ca.bungo.modules.items.dwarf.dwarfclasses.BakerClass;
+import ca.bungo.modules.items.dwarf.dwarfclasses.BlacksmithClass;
+import ca.bungo.modules.items.dwarf.dwarfclasses.BuilderClass;
+import ca.bungo.modules.items.dwarf.dwarfclasses.TailorClass;
+import ca.bungo.modules.items.dwarf.potions.FirePotion;
+import ca.bungo.modules.items.dwarf.potions.HealingPotion;
+import ca.bungo.modules.items.dwarf.potions.SpeedPotion;
+import ca.bungo.modules.items.dwarf.potions.StrengthPotion;
 import ca.bungo.util.FileManager;
 import ca.bungo.util.backend.cooldown.CooldownManager;
 import ca.bungo.util.backend.player.PlayerManager;
@@ -69,8 +79,19 @@ public class RDvZ extends JavaPlugin {
 
     
     private void registerItems() {
-    	customItems.add(new ExampleItem(this));
+    	//customItems.add(new ExampleItem(this));
     	customItems.add(new ClassClaimItem(this, Material.MAGMA_CREAM));
+    	customItems.add(new BuilderClass(this, Material.GOLD_RECORD));
+    	customItems.add(new TailorClass(this, Material.GREEN_RECORD));
+    	customItems.add(new BlacksmithClass(this, Material.RECORD_4));
+    	customItems.add(new BakerClass(this, Material.RECORD_11));
+    	customItems.add(new AlchemistClass(this, Material.RECORD_12));
+    	customItems.add(new Classbook(this, Material.BOOK));
+    	customItems.add(new HealingPotion(this, Material.POTION));
+    	customItems.add(new SpeedPotion(this, Material.POTION));
+    	customItems.add(new FirePotion(this, Material.POTION));
+    	customItems.add(new StrengthPotion(this, Material.POTION));
+    	customItems.add(new CakeSpawner(this, Material.EMERALD));
     }
 
     private void registerCommands(){

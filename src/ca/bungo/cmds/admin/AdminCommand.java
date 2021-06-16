@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import ca.bungo.cmds.admin.arguments.DataArgument;
 import ca.bungo.cmds.admin.arguments.ItemsArgument;
 import ca.bungo.cmds.admin.arguments.MoreArgument;
 import ca.bungo.cmds.admin.arguments.PunishArgument;
@@ -36,6 +37,7 @@ public class AdminCommand implements CommandExecutor {
     	arguments.add(new MoreArgument(plugin, "more"));
     	arguments.add(new ReloadArgument(plugin, "reload"));
     	arguments.add(new StartArgument(plugin, "start"));
+    	arguments.add(new DataArgument(plugin, "data"));
     	
     	aa = new PunishArgument(plugin, "manage");
     	arguments.add(aa);

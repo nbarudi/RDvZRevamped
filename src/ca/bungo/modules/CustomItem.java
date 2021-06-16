@@ -51,7 +51,13 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		}
 		data.removeCooldown(name);
 		return false;
-		
+	}
+	
+	public void giveCooldown(Player player, String name, double seconds) {
+		if(!onCooldown(player, name)) {
+			Cooldown cd = pl.cm.giveCooldown(player, seconds*20);
+			pl.currentRound.getPlayerData(player.getName()).addCooldown(name, cd);
+		}
 	}
 	
 	public void onRightclickItem(Player player) {
