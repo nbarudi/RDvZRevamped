@@ -9,10 +9,12 @@ import org.bukkit.Difficulty;
 import org.bukkit.Material;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
+import org.bukkit.inventory.EnchantingInventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ca.bungo.cmds.admin.AdminCommand;
+import ca.bungo.events.EnchantingEventStuff;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
 import ca.bungo.modules.items.dwarf.CakeSpawner;
@@ -34,16 +36,18 @@ import ca.bungo.util.backend.round.RoundData;
 
 public class RDvZ extends JavaPlugin {
 
-    public FileManager fm;
+	public FileManager fm;
     public CooldownManager cm;
     
     public static List<CustomItem> customItems = new ArrayList<>();
+    public ArrayList<EnchantingInventory> inventories;
     
     public RoundData currentRound;
 
     @Override
     public void onEnable(){
     	
+    	inventories = new ArrayList<EnchantingInventory>();
     	
     	registerItems();
         registerConfigs();
@@ -106,6 +110,7 @@ public class RDvZ extends JavaPlugin {
     	}
     	pm.registerEvents(new PlayerManager(this), this);
     	pm.registerEvents(new PlayerJoinLeave(this), this);
+    	pm.registerEvents(new EnchantingEventStuff(this), this);
     }
 
     private void registerConfigs(){
