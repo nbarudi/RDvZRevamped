@@ -34,6 +34,8 @@ public class PlayerData {
 	private String name = "";
 	private String nick = "";
 	
+	private String key = "";
+	
 	public boolean isDwarf = false;
 	public boolean isHero = false;
 	public boolean claimedClasses = false;
@@ -51,6 +53,8 @@ public class PlayerData {
 	public PlayerData(RDvZ instance, String name) {
 		this.name = name;
 		this.instance = instance;
+		
+		this.key = new PlayerManager.RandomString().nextString();
 		
 		this.mana = maxMana;
 		startTasks();
@@ -154,6 +158,14 @@ public class PlayerData {
 		return cd;
 	}
 	
+	public String getKey() {
+		return this.key;
+	}
+	
+	public void updateKey() {
+		this.key = new PlayerManager.RandomString().nextString();
+	}
+	
 	public HashMap<String, Object> getPunishments(){
 		HashMap<String, Object> punishments = new HashMap<String, Object>();
 		YamlConfiguration cfg = instance.fm.getConfig("punishments.yml").get();
@@ -213,7 +225,8 @@ public class PlayerData {
 		toRet += ChatColor.BLUE + "IsOnline: " + (this.isOnline ? ChatColor.GREEN + "True" : ChatColor.RED + "False") + "\n";
 		toRet += ChatColor.BLUE + "DwarfClass: " + this.dwarfClass.toString() + "\n";
 		toRet += ChatColor.BLUE + "MonsterClass: " + this.monsterClass.toString() + "\n";
-		toRet += ChatColor.BLUE + "Mana: " + this.mana;
+		toRet += ChatColor.BLUE + "Mana: " + this.mana + "\n";
+		toRet += ChatColor.BLUE + "Current Key: " + ChatColor.YELLOW + this.key;
 		
 		return toRet;
 	}

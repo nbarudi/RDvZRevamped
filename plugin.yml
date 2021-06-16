@@ -4,3 +4,5 @@ main: ca.bungo.main.RDvZ
 commands:
   admin:
     usage: /admin
+  warp:
+    usage: /warp

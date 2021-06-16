@@ -36,6 +36,10 @@ public class ItemsArgument extends AdminArgument{
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
+		if(event.getInventory() == null)
+			return;
+		if(event.getInventory().getName() == null)
+			return;
 		if(event.getInventory().getName() == inv.getName()) {
 			event.setCancelled(true);
 			if(event.getCurrentItem() != null) {

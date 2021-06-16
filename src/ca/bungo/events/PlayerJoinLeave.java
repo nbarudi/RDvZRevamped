@@ -59,10 +59,7 @@ public class PlayerJoinLeave implements Listener {
 			return;
 		}
 		
-		if(Bukkit.getWorld("RDvZ_Lobby") != null) {
-			player.teleport(Bukkit.getWorld("RDvZ_Lobby").getSpawnLocation());
-			player.sendMessage("Warping to lobby...");
-		}
+		Bukkit.dispatchCommand(player, "warp " + data.getKey() + " spawn" );
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy : hh:mm:ss");
 		String date = sdf.format(new Date());

@@ -13,6 +13,7 @@ import org.bukkit.inventory.EnchantingInventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ca.bungo.cmds.WarpCommand;
 import ca.bungo.cmds.admin.AdminCommand;
 import ca.bungo.events.EnchantingEventStuff;
 import ca.bungo.events.PlayerJoinLeave;
@@ -29,15 +30,19 @@ import ca.bungo.modules.items.dwarf.potions.FirePotion;
 import ca.bungo.modules.items.dwarf.potions.HealingPotion;
 import ca.bungo.modules.items.dwarf.potions.SpeedPotion;
 import ca.bungo.modules.items.dwarf.potions.StrengthPotion;
+import ca.bungo.util.CommandUtils;
 import ca.bungo.util.FileManager;
 import ca.bungo.util.backend.cooldown.CooldownManager;
 import ca.bungo.util.backend.player.PlayerManager;
 import ca.bungo.util.backend.round.RoundData;
+import ca.bungo.util.backend.warps.WarpManager;
 
 public class RDvZ extends JavaPlugin {
 
 	public FileManager fm;
     public CooldownManager cm;
+    public CommandUtils cu;
+    public WarpManager wm;
     
     public static List<CustomItem> customItems = new ArrayList<>();
     public ArrayList<EnchantingInventory> inventories;
@@ -59,7 +64,6 @@ public class RDvZ extends JavaPlugin {
         
         if(Bukkit.getWorld(currentRound.worldName) == null) {
         	WorldCreator wc = new WorldCreator(currentRound.worldName);
-        	wc.copy(Bukkit.getWorld("world"));
         	wc.createWorld();
         }
         
@@ -70,15 +74,17 @@ public class RDvZ extends JavaPlugin {
 			wc.createWorld().setDifficulty(Difficulty.PEACEFUL);;
 		}
 
-        Bukkit.getWorld(currentRound.worldName).setAutoSave(false);
+        //Bukkit.getWorld(currentRound.worldName).setAutoSave(false);
         Bukkit.broadcastMessage(ChatColor.YELLOW + "RDvZ has disabled AutoSaving! If you need to save the world do /save-all!");
         
         cm = new CooldownManager(this);
+        cu = new CommandUtils(this);
+        wm = new WarpManager(this);
     }
 
     @Override
     public void onDisable(){
-
+    	wm.saveWarps();
     }
 
     
@@ -100,6 +106,7 @@ public class RDvZ extends JavaPlugin {
 
     private void registerCommands(){
     	getCommand("admin").setExecutor(new AdminCommand(this));
+    	getCommand("warp").setExecutor(new WarpCommand(this));
     }
 
     private void registerEvents(){

@@ -3,6 +3,7 @@ package ca.bungo.modules.items.dwarf.dwarfclasses;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -79,6 +80,8 @@ public class BlacksmithClass extends CustomItem {
 		
 		
 		player.getInventory().addItem(book);
+		
+		Bukkit.dispatchCommand(player, "warp " + data.getKey() + " dwarf");
 	}
 
 }
