@@ -50,6 +50,11 @@ public class CakeSpawner extends CustomItem{
 		
 		giveCooldown(player, "CakeSummon", 1);
 		
+		ItemStack cost = item.clone();
+		cost.setAmount(1);
+		
+		player.getInventory().removeItem(cost);
+		
 		Location location = event.getClickedBlock().getLocation();
 		location.setY(location.getY() + 1);
 		

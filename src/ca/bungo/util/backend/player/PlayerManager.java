@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -40,6 +41,7 @@ public class PlayerManager implements Listener {
 		PlayerData data = new PlayerData(instance, player.getName());
 		instance.currentRound.addPlayerData(data);
 		event.setJoinMessage(ChatColor.LIGHT_PURPLE + "Welcome " + ChatColor.YELLOW + player.getName() + ChatColor.LIGHT_PURPLE + " to the server!");
+		player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.0D);
 	}
 	
 	@EventHandler

@@ -60,6 +60,22 @@ public class WarpCommand implements CommandExecutor {
 			pl.wm.removeWarp(args[1]);
 			return true;
 		}
+		else if(args.length == 2) {
+			if(!pl.cu.verifyPlayerCommand(player, args[0])) {
+				player.sendMessage(ChatManager.formatColor("&cNow Now... &aNo need to try and abuse permissions!"));
+				return true;
+			}
+			Warp warp = pl.wm.getWarp(args[1]);
+			if(warp == null) {
+				player.sendMessage(ChatManager.formatColor("&cSeems something went wrong.. &eContact nbarudi on discord and report this issue: &bnbarudi#0001\n &cError Code: 224"));
+				return true;
+			}
+			
+			player.sendMessage(ChatManager.formatColor("&eWarping to: &a" + warp.getName()));
+			player.teleport(warp.getLocation());
+			
+			return true;
+		}
 		else {
 			Warp warp = pl.wm.getWarp(args[0]);
 			if(warp == null) {

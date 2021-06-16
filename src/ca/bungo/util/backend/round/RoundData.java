@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -37,6 +38,11 @@ public class RoundData {
 			if(cBans <= 0)
 				continue;
 			cfg.set("Players." + k + ".currentRoundBans", cBans - 1);
+		}
+		
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			if (p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).getBaseValue() != 100.0D)
+				p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.0D); 
 		}
 	}
 
