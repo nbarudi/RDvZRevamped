@@ -5,13 +5,17 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import ca.bungo.main.RDvZ;
 import ca.bungo.util.ChatManager;
 import ca.bungo.util.backend.cooldown.Cooldown;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -30,6 +34,8 @@ public class PlayerData {
 	private HashMap<String, Integer> tasks = new HashMap<String, Integer>();
 	
 	private HashMap<String, Cooldown> cooldowns = new HashMap<String, Cooldown>();
+	
+	private MobDisguise cDisg;
 	
 	private String name = "";
 	private String nick = "";
@@ -60,6 +66,7 @@ public class PlayerData {
 		startTasks();
 	}
 	
+	
 	private void startTasks() {
 		int temptask = 0;
 		
@@ -83,6 +90,30 @@ public class PlayerData {
 				mana = maxMana;
 		}, 20, 10);
 		tasks.put("Mana", temptask);
+		
+		
+		temptask = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, () -> {
+				if (!isOnline)
+					return;
+				Player player = Bukkit.getPlayer(name);
+				Location loc = player.getLocation();
+
+				byte light = loc.getBlock().getLightLevel();
+				if (light <= 6) {
+					// If the player has a torch in their main or off hand don't blind them!
+					if (player.getInventory().getItemInMainHand().getType().equals(Material.TORCH)
+							|| player.getInventory().getItemInOffHand().getType().equals(Material.TORCH)
+							|| player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
+						player.removePotionEffect(PotionEffectType.BLINDNESS);
+						return;
+					}
+					player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 999999, 0));
+				} else {
+					player.removePotionEffect(PotionEffectType.BLINDNESS);
+				}
+		}, 20, 20);
+
+		tasks.put("Blindness", temptask);
 	}
 	
 	
@@ -203,6 +234,7 @@ public class PlayerData {
 		isDwarf = true;
 		player.getWorld().strikeLightning(new Location(deathData.getDeathLoc().getWorld(), deathData.getDeathLoc().getX(), deathData.getDeathLoc().getY() + 10, deathData.getDeathLoc().getZ()));
 		player.sendMessage(ChatManager.formatColor("&7[&aRDvZ&7] &eYou have been Resurrected by an admin!"));
+		startTasks();
 	}
 
 	public DeathData getDeathData() {
@@ -211,6 +243,30 @@ public class PlayerData {
 
 	public void setDeathData(DeathData deathData) {
 		this.deathData = deathData;
+	}
+	
+	public void addTask(String name, int task) {
+		tasks.put(name, task);
+	}
+	
+	public void removeTask(String name) {
+		if(tasks.containsKey(name)) {
+			Bukkit.getScheduler().cancelTask(tasks.get(name));
+			tasks.remove(name);
+		}
+	}
+	
+	public void disguisePlayer(MobDisguise disg) {
+		disg.setEntity(Bukkit.getPlayer(name));
+		disg.startDisguise();
+		cDisg = disg;
+	}
+	
+	public void unDisguisePlayer() {
+		if(cDisg == null)
+			return;
+		cDisg.stopDisguise();
+		cDisg = null;
 	}
 	
 	@Override

@@ -72,6 +72,10 @@ public class PlayerManager implements Listener {
 		if(data.isDwarf) {
 			data.isDwarf = false;
 			
+			//Removing tasks that are not needed
+			data.removeTask("Blindness");
+			data.removeTask("Mana");
+			
 			//Setting up Death Information
 			DeathData dData = new DeathData();
 			dData.setDclass(data.getDwarfClass());
@@ -81,6 +85,7 @@ public class PlayerManager implements Listener {
 			data.setDeathData(dData);
 		}
 		data.claimedClasses = false;
+		data.unDisguisePlayer();
 	}
 	
 	@EventHandler
