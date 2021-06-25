@@ -1,4 +1,4 @@
-package ca.bungo.modules.items.dwarf.dwarfclasses;
+package ca.bungo.modules.items.dwarf.classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +19,18 @@ import ca.bungo.util.ItemManager;
 import ca.bungo.util.backend.player.PlayerData;
 import ca.bungo.util.backend.player.PlayerData.DwarfClass;
 
-public class BakerClass extends CustomItem {
+public class BuilderClass extends CustomItem {
 
-	public BakerClass(RDvZ pl, Material material) {
+	public BuilderClass(RDvZ pl, Material material) {
 		super(pl, material);
 		ItemMeta meta = getItemMeta();
-		meta.setDisplayName(ChatColor.BLACK + "Become Baker");
+		meta.setDisplayName(ChatColor.YELLOW + "Become Builder");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.YELLOW + "Click to become a baker!");
+		lore.add(ChatColor.YELLOW + "Click to become a dwarf!");
 		meta.setLore(lore);
 		setItemMeta(meta);
 		this.canDrop = false;
-		this.name = "Become Baker";
+		this.name = "Become Builder";
 	}
 
 	@Override
@@ -40,11 +40,11 @@ public class BakerClass extends CustomItem {
 		ItemStack item = player.getInventory().getItemInMainHand();
 		if(!verifyItem(item, this.getItemMeta().getDisplayName()))
 			return;
-		if(onCooldown(player, "BecomeBaker")) {
+		if(onCooldown(player, "BecomeBuilder")) {
 			event.setCancelled(true);
 			return;
 		}
-		giveCooldown(player, "BecomeBaker", 1);
+		giveCooldown(player, "BecomeBuilder", 1);
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			this.onRightclickItem(player);
 			event.setCancelled(true);
@@ -52,8 +52,8 @@ public class BakerClass extends CustomItem {
 		}
 		
 		PlayerData data = pl.currentRound.getPlayerData(player.getName());
-		data.setDwarfClass(DwarfClass.BAKER);
-		player.sendMessage(ChatColor.BLUE + "You have become a Baker!");
+		data.setDwarfClass(DwarfClass.BUILDER);
+		player.sendMessage(ChatColor.BLUE + "You have become a Builder!");
 		player.getInventory().clear();
 		player.setHealth(20);
 		player.setFoodLevel(20);
@@ -63,21 +63,19 @@ public class BakerClass extends CustomItem {
 		ItemStack book = ItemManager.findCustomItem("Run Class");
 
 		//Class Spesific
-		player.getInventory().addItem(new ItemStack(Material.FURNACE, 4));
-		player.getInventory().addItem(new ItemStack(Material.COAL, 16));
-		player.getInventory().addItem(new ItemStack(Material.CLAY_BALL, 16));
-		player.getInventory().addItem(new ItemStack(Material.BRICK, 64));
-		player.getInventory().addItem(new ItemStack(Material.CHEST, 2));
-		player.getInventory().addItem(new ItemStack(Material.SIGN, 2));
-		player.getInventory().addItem(new ItemStack(Material.WORKBENCH, 1));
-		
+		player.getInventory().addItem(new ItemStack(Material.LEATHER_HELMET));
+		player.getInventory().addItem(new ItemStack(Material.LEATHER_CHESTPLATE));
+		player.getInventory().addItem(new ItemStack(Material.LEATHER_LEGGINGS));
+		player.getInventory().addItem(new ItemStack(Material.LEATHER_BOOTS));
+		player.getInventory().addItem(new ItemStack(Material.SMOOTH_BRICK, 128));
+				
 		//Universal
 		player.getInventory().addItem(new ItemStack(Material.IRON_PICKAXE));
 		player.getInventory().addItem(new ItemStack(Material.IRON_AXE));
 		player.getInventory().addItem(new ItemStack(Material.IRON_SPADE));
 		player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 5));
 		
-		
+		//Special Items
 		player.getInventory().addItem(book);
 		
 		Bukkit.dispatchCommand(player, "warp " + data.getKey() + " dwarf");

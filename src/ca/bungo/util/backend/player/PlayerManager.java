@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import ca.bungo.main.RDvZ;
+import ca.bungo.util.ItemManager;
 import ca.bungo.util.backend.warps.Warp;
 
 public class PlayerManager implements Listener {
@@ -86,6 +87,8 @@ public class PlayerManager implements Listener {
 		}
 		data.claimedClasses = false;
 		data.unDisguisePlayer();
+		event.setKeepInventory(true);
+		event.setDroppedExp(0);
 	}
 	
 	@EventHandler
@@ -94,6 +97,9 @@ public class PlayerManager implements Listener {
 		
 		Warp w = instance.wm.getWarp("spawn");
 		event.setRespawnLocation(w.getLocation());
+		event.getPlayer().getInventory().clear();
+		
+		event.getPlayer().getInventory().addItem(ItemManager.findCustomItem("Monster Claim Classes"));
 		
 	}
 	

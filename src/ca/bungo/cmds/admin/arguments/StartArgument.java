@@ -9,6 +9,7 @@ import ca.bungo.cmds.admin.AdminArgument;
 import ca.bungo.main.RDvZ;
 import ca.bungo.util.ChatManager;
 import ca.bungo.util.ItemManager;
+import ca.bungo.util.backend.player.PlayerData;
 
 public class StartArgument extends AdminArgument{
 
@@ -21,6 +22,12 @@ public class StartArgument extends AdminArgument{
 	@Override
 	public void runArgument(CommandSender sender, String[] args) {
 		Player player = (Player) sender;
+		
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			p.getInventory().clear();
+			PlayerData d = pl.currentRound.getPlayerData(p.getName());
+			d.isDwarf = true;
+		}
 		
 		ItemStack magma = ItemManager.findCustomItem("Dwarf Claim Classes").clone();
 		magma.setAmount(64);

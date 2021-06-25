@@ -1,4 +1,4 @@
-package ca.bungo.modules.items.dwarf.dwarfclasses;
+package ca.bungo.modules.items.dwarf.classes;
 
 import java.util.ArrayList;
 import java.util.List;

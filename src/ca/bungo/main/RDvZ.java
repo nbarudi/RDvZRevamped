@@ -18,18 +18,20 @@ import ca.bungo.cmds.admin.AdminCommand;
 import ca.bungo.events.EnchantingEventStuff;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
+import ca.bungo.modules.events.monster.AntiPickup;
 import ca.bungo.modules.items.dwarf.CakeSpawner;
 import ca.bungo.modules.items.dwarf.ClassClaimItem;
 import ca.bungo.modules.items.dwarf.Classbook;
-import ca.bungo.modules.items.dwarf.dwarfclasses.AlchemistClass;
-import ca.bungo.modules.items.dwarf.dwarfclasses.BakerClass;
-import ca.bungo.modules.items.dwarf.dwarfclasses.BlacksmithClass;
-import ca.bungo.modules.items.dwarf.dwarfclasses.BuilderClass;
-import ca.bungo.modules.items.dwarf.dwarfclasses.TailorClass;
+import ca.bungo.modules.items.dwarf.classes.AlchemistClass;
+import ca.bungo.modules.items.dwarf.classes.BakerClass;
+import ca.bungo.modules.items.dwarf.classes.BlacksmithClass;
+import ca.bungo.modules.items.dwarf.classes.BuilderClass;
+import ca.bungo.modules.items.dwarf.classes.TailorClass;
 import ca.bungo.modules.items.dwarf.potions.FirePotion;
 import ca.bungo.modules.items.dwarf.potions.HealingPotion;
 import ca.bungo.modules.items.dwarf.potions.SpeedPotion;
 import ca.bungo.modules.items.dwarf.potions.StrengthPotion;
+import ca.bungo.modules.items.monster.MonsterclassClaim;
 import ca.bungo.util.CommandUtils;
 import ca.bungo.util.FileManager;
 import ca.bungo.util.backend.cooldown.CooldownManager;
@@ -90,6 +92,8 @@ public class RDvZ extends JavaPlugin {
     
     private void registerItems() {
     	//customItems.add(new ExampleItem(this));
+    	
+    	//Dwarf
     	customItems.add(new ClassClaimItem(this, Material.MAGMA_CREAM));
     	customItems.add(new BuilderClass(this, Material.GOLD_RECORD));
     	customItems.add(new TailorClass(this, Material.GREEN_RECORD));
@@ -102,6 +106,11 @@ public class RDvZ extends JavaPlugin {
     	customItems.add(new FirePotion(this, Material.POTION));
     	customItems.add(new StrengthPotion(this, Material.POTION));
     	customItems.add(new CakeSpawner(this, Material.EMERALD));
+    	
+    	//Monster
+    	customItems.add(new MonsterclassClaim(this, Material.GOLD_NUGGET));
+    	
+    	//Dragon
     }
 
     private void registerCommands(){
@@ -118,6 +127,7 @@ public class RDvZ extends JavaPlugin {
     	pm.registerEvents(new PlayerManager(this), this);
     	pm.registerEvents(new PlayerJoinLeave(this), this);
     	pm.registerEvents(new EnchantingEventStuff(this), this);
+    	pm.registerEvents(new AntiPickup(this), this);
     }
 
     private void registerConfigs(){

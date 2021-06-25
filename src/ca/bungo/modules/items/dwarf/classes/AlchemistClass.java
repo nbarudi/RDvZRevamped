@@ -1,4 +1,4 @@
-package ca.bungo.modules.items.dwarf.dwarfclasses;
+package ca.bungo.modules.items.dwarf.classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +19,18 @@ import ca.bungo.util.ItemManager;
 import ca.bungo.util.backend.player.PlayerData;
 import ca.bungo.util.backend.player.PlayerData.DwarfClass;
 
-public class BlacksmithClass extends CustomItem {
+public class AlchemistClass extends CustomItem {
 
-	public BlacksmithClass(RDvZ pl, Material material) {
+	public AlchemistClass(RDvZ pl, Material material) {
 		super(pl, material);
 		ItemMeta meta = getItemMeta();
-		meta.setDisplayName(ChatColor.DARK_RED + "Become Blacksmith");
+		meta.setDisplayName(ChatColor.BLUE + "Become Alchemist");
 		List<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.YELLOW + "Click to become a Blacksmith!");
+		lore.add(ChatColor.YELLOW + "Click to become an Alchemist!");
 		meta.setLore(lore);
 		setItemMeta(meta);
 		this.canDrop = false;
-		this.name = "Become Blacksmith";
+		this.name = "Become Alchemist";
 	}
 
 	@Override
@@ -40,11 +40,11 @@ public class BlacksmithClass extends CustomItem {
 		ItemStack item = player.getInventory().getItemInMainHand();
 		if(!verifyItem(item, this.getItemMeta().getDisplayName()))
 			return;
-		if(onCooldown(player, "BecomeBlacksmith")) {
+		if(onCooldown(player, "BecomeAlchemist")) {
 			event.setCancelled(true);
 			return;
 		}
-		giveCooldown(player, "BecomeBlacksmith", 1);
+		giveCooldown(player, "BecomeAlchemist", 1);
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			this.onRightclickItem(player);
 			event.setCancelled(true);
@@ -52,8 +52,8 @@ public class BlacksmithClass extends CustomItem {
 		}
 		
 		PlayerData data = pl.currentRound.getPlayerData(player.getName());
-		data.setDwarfClass(DwarfClass.SMITH);
-		player.sendMessage(ChatColor.BLUE + "You have become a Blacksmith!");
+		data.setDwarfClass(DwarfClass.ALCHEMIST);
+		player.sendMessage(ChatColor.BLUE + "You have become an Alchemist!");
 		player.getInventory().clear();
 		player.setHealth(20);
 		player.setFoodLevel(20);
@@ -63,11 +63,12 @@ public class BlacksmithClass extends CustomItem {
 		ItemStack book = ItemManager.findCustomItem("Run Class");
 
 		//Class Spesific
-		player.getInventory().addItem(new ItemStack(Material.FURNACE, 4));
-		player.getInventory().addItem(new ItemStack(Material.COAL, 16));
-		player.getInventory().addItem(new ItemStack(Material.REDSTONE_ORE, 6));
-		player.getInventory().addItem(new ItemStack(Material.GOLD_ORE, 16));
-		player.getInventory().addItem(new ItemStack(Material.NETHER_BRICK, 64));
+		player.getInventory().addItem(new ItemStack(Material.REDSTONE, 4));
+		player.getInventory().addItem(new ItemStack(Material.BREWING_STAND_ITEM, 2));
+		player.getInventory().addItem(new ItemStack(Material.BLAZE_POWDER, 2));
+		player.getInventory().addItem(new ItemStack(Material.LAPIS_BLOCK, 64));
+		player.getInventory().addItem(new ItemStack(Material.WATER_BUCKET, 1));
+		player.getInventory().addItem(new ItemStack(Material.GLASS, 64));
 		player.getInventory().addItem(new ItemStack(Material.CHEST, 2));
 		player.getInventory().addItem(new ItemStack(Material.SIGN, 2));
 		player.getInventory().addItem(new ItemStack(Material.WORKBENCH, 1));
