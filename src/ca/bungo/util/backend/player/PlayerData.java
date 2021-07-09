@@ -51,7 +51,7 @@ public class PlayerData {
 	private DeathData deathData;
 	
 	private DwarfClass dwarfClass = DwarfClass.NONE;
-	private DwarfClass monsterClass = DwarfClass.NONE;
+	private MonsterClass monsterClass = MonsterClass.NONE;
 	
 	private int mana;
 	private int maxMana = 1000;
@@ -138,11 +138,11 @@ public class PlayerData {
 		this.dwarfClass = dwarfClass;
 	}
 	
-	public DwarfClass getMonsterClass() {
+	public MonsterClass getMonsterClass() {
 		return monsterClass;
 	}
 	
-	public void setMonsterClass(DwarfClass monsterClass) {
+	public void setMonsterClass(MonsterClass monsterClass) {
 		this.monsterClass = monsterClass;
 	}
 	
