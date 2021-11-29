@@ -2,7 +2,7 @@
 
 This is a recreation of the 1.2.5 version of Dwarves Vs Zombies.
 
-(Disclamer: Since classes started Development will be delayed until my schedule opens up)
+(Disclaimer: Since classes started Development will be delayed until my schedule opens up)
 
 ## Notes:
 
