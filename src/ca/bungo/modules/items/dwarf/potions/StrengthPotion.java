@@ -67,7 +67,7 @@ public class StrengthPotion extends CustomItem {
 			return;
 		}
 		
-		giveCooldown(player, "StrengthPotion", 0.4);
+		giveCooldown(player, "StrengthPotion", this.getConfigurableCooldown("StrengthPotion", 0.4));
 		Location loc = player.getLocation();
 		loc.getWorld().spawnParticle(Particle.REDSTONE, loc.getX(), loc.getY() - 1, loc.getZ(), 100, 1, 1, 1);
 		loc.getWorld().playSound(loc, Sound.ENTITY_SPLASH_POTION_BREAK, 1, 1);

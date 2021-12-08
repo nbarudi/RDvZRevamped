@@ -16,16 +16,16 @@ import ca.bungo.util.backend.player.PlayerData;
 import ca.bungo.util.backend.player.PlayerData.DwarfClass;
 import ca.bungo.util.backend.player.PlayerData.MonsterClass;
 
-public class BecomeSpider extends CustomItem {
+public class BecomeBroodMother extends CustomItem {
 
-	public BecomeSpider(RDvZ pl) {
+	public BecomeBroodMother(RDvZ pl) {
 		super(pl, Material.MONSTER_EGG);
 		SpawnEggMeta meta = (SpawnEggMeta) this.getItemMeta();
-		meta.setSpawnedType(EntityType.CAVE_SPIDER);
-		meta.setDisplayName(ChatColor.RED + "Become Spider");
+		meta.setSpawnedType(EntityType.SILVERFISH);
+		meta.setDisplayName(ChatColor.DARK_PURPLE + "Become Brood Mother");
 		this.setItemMeta(meta);
 		this.canDrop = false;
-		this.name = "Become Spider";
+		this.name = "Become Brood-Mother";
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class BecomeSpider extends CustomItem {
 		PlayerData data = pl.currentRound.getPlayerData(player.getName());
 		data.setDwarfClass(DwarfClass.NONE);
 		data.isDwarf = false;
-		data.setMonsterClass(MonsterClass.SPIDER);
-		player.sendMessage(ChatColor.RED + "You have become a Spider!");
+		data.setMonsterClass(MonsterClass.BROODMOTHER);
+		player.sendMessage(ChatColor.DARK_PURPLE + "You have become a Brood Mother!");
 		player.getInventory().clear();
 		player.setHealth(20);
 		player.setFoodLevel(20);

@@ -67,7 +67,7 @@ public class SpeedPotion extends CustomItem {
 			return;
 		}
 		
-		giveCooldown(player, "SpeedPotion", 0.4);
+		giveCooldown(player, "SpeedPotion", this.getConfigurableCooldown("SpeedPotion", 0.4));
 		Location loc = player.getLocation();
 		loc.getWorld().spawnParticle(Particle.CLOUD, loc.getX(), loc.getY() - 1, loc.getZ(), 100, 1, 1, 1);
 		loc.getWorld().playSound(loc, Sound.ENTITY_SPLASH_POTION_BREAK, 1, 1);

@@ -19,6 +19,7 @@ import ca.bungo.events.EnchantingEventStuff;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
 import ca.bungo.modules.events.monster.AntiPickup;
+import ca.bungo.modules.events.monster.NoFallDamage;
 import ca.bungo.modules.items.dwarf.CakeSpawner;
 import ca.bungo.modules.items.dwarf.ClassClaimItem;
 import ca.bungo.modules.items.dwarf.Classbook;
@@ -32,6 +33,15 @@ import ca.bungo.modules.items.dwarf.potions.HealingPotion;
 import ca.bungo.modules.items.dwarf.potions.SpeedPotion;
 import ca.bungo.modules.items.dwarf.potions.StrengthPotion;
 import ca.bungo.modules.items.monster.MonsterclassClaim;
+import ca.bungo.modules.items.monster.abilities.WolfJumpAbility;
+import ca.bungo.modules.items.monster.classes.BecomeBroodMother;
+import ca.bungo.modules.items.monster.classes.BecomeCreeper;
+import ca.bungo.modules.items.monster.classes.BecomeEnderman;
+import ca.bungo.modules.items.monster.classes.BecomeIronGolem;
+import ca.bungo.modules.items.monster.classes.BecomeSkeleton;
+import ca.bungo.modules.items.monster.classes.BecomeSpider;
+import ca.bungo.modules.items.monster.classes.BecomeWolf;
+import ca.bungo.modules.items.monster.classes.BecomeZombie;
 import ca.bungo.util.CommandUtils;
 import ca.bungo.util.FileManager;
 import ca.bungo.util.backend.cooldown.CooldownManager;
@@ -110,6 +120,17 @@ public class RDvZ extends JavaPlugin {
     	//Monster
     	customItems.add(new MonsterclassClaim(this, Material.GOLD_NUGGET));
     	
+    	customItems.add(new BecomeZombie(this));
+    	customItems.add(new BecomeSkeleton(this));
+    	customItems.add(new BecomeSpider(this));
+    	customItems.add(new BecomeCreeper(this));
+    	customItems.add(new BecomeWolf(this));
+    	customItems.add(new BecomeIronGolem(this));
+    	customItems.add(new BecomeBroodMother(this));
+    	customItems.add(new BecomeEnderman(this));
+    	
+    	customItems.add(new WolfJumpAbility(this, Material.SUGAR));
+    	
     	//Dragon
     }
 
@@ -128,6 +149,7 @@ public class RDvZ extends JavaPlugin {
     	pm.registerEvents(new PlayerJoinLeave(this), this);
     	pm.registerEvents(new EnchantingEventStuff(this), this);
     	pm.registerEvents(new AntiPickup(this), this);
+    	pm.registerEvents(new NoFallDamage(this), this);
     }
 
     private void registerConfigs(){

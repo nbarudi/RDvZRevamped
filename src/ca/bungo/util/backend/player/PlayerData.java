@@ -93,7 +93,7 @@ public class PlayerData {
 		
 		
 		temptask = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, () -> {
-				if (!isOnline)
+				if (!isOnline || !instance.currentRound.isGameStarted())
 					return;
 				Player player = Bukkit.getPlayer(name);
 				Location loc = player.getLocation();

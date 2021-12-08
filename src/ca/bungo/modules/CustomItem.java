@@ -2,6 +2,8 @@ package ca.bungo.modules;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -68,6 +70,25 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		if(item == null || item.getItemMeta() == null || item.getItemMeta().getDisplayName() == null)
 			return false;
 		return item.getItemMeta().getDisplayName().equals(name);
+	}
+	
+	public double getConfigurableCooldown(String name, double def) {
+		pl.fm.reloadConfig("config.yml");
+		YamlConfiguration cfg = pl.fm.getConfig("config.yml").get();
+		
+		ConfigurationSection mSec = cfg.getConfigurationSection("Settings.Cooldowns");
+		if(mSec == null)
+			mSec = cfg.createSection("Settings.Cooldowns");
+		
+		if(mSec.getDouble(name) == 0.0) {
+			mSec.set(name, def);
+			pl.fm.saveConfig("config.yml");
+			return def;
+		}else {
+			return mSec.getDouble(name);
+		}
+			
+		
 	}
 
 }

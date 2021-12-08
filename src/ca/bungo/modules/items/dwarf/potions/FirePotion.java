@@ -67,7 +67,7 @@ public class FirePotion extends CustomItem {
 			return;
 		}
 		
-		giveCooldown(player, "FirePotion", 0.4);
+		giveCooldown(player, "FirePotion", this.getConfigurableCooldown("FirePotion", 0.4));
 		Location loc = player.getLocation();
 		loc.getWorld().spawnParticle(Particle.FLAME, loc.getX(), loc.getY() - 1, loc.getZ(), 100, 1, 1, 1);
 		loc.getWorld().playSound(loc, Sound.ENTITY_SPLASH_POTION_BREAK, 1, 1);

@@ -93,7 +93,7 @@ public class RestartArgument extends AdminArgument{
 		
 		Bukkit.broadcastMessage(ChatColor.YELLOW + "Sending players to lobby world!");
 		for(Player player : Bukkit.getOnlinePlayers()) {
-			player.teleport(lobby.getSpawnLocation());
+			player.teleport(pl.wm.getWarp("spawn").getLocation());
 		}
 		
 		Bukkit.broadcastMessage(ChatColor.RED + "Please wait while we reset the map...");

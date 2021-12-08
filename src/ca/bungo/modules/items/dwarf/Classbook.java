@@ -89,7 +89,7 @@ public class Classbook extends CustomItem {
 			}
 			player.getWorld().dropItemNaturally(loc, new ItemStack(Material.TORCH, rnd.nextInt(6)));
 			
-			giveCooldown(player, "ClassBook", 15);
+			giveCooldown(player, "ClassBook", this.getConfigurableCooldown("BuilderClassCooldown", 15));
 			break;
 		case BAKER:
 			ItemStack b_cost = new ItemStack(Material.CLAY_BRICK);
@@ -122,7 +122,7 @@ public class Classbook extends CustomItem {
 			
 			player.getWorld().dropItemNaturally(b_loc, new ItemStack(Material.CLAY_BALL, rnd.nextInt(16) + 4));
 			player.getWorld().dropItemNaturally(b_loc, new ItemStack(Material.COAL, rnd.nextInt(7)));
-			giveCooldown(player, "ClassBook", 10);
+			giveCooldown(player, "ClassBook", this.getConfigurableCooldown("BakerClassCooldown", 10));
 			break;
 		case SMITH:
 			ItemStack cost = new ItemStack(Material.WATCH);
@@ -168,7 +168,7 @@ public class Classbook extends CustomItem {
 			player.getWorld().dropItemNaturally(s_loc, new ItemStack(Material.GOLD_ORE, randomGold));
 			player.getWorld().dropItemNaturally(s_loc, new ItemStack(Material.REDSTONE_ORE, randomRedstone));
 			player.getWorld().dropItemNaturally(s_loc, new ItemStack(Material.COAL, randomCoal));
-			giveCooldown(player, "ClassBook", 10);
+			giveCooldown(player, "ClassBook", this.getConfigurableCooldown("BlacksmithClassCooldown", 15));
 			break;
 		case ALCHEMIST:
 			ItemStack a_cost = new ItemStack(Material.POTION);
@@ -222,7 +222,7 @@ public class Classbook extends CustomItem {
 			player.getWorld().dropItemNaturally(a_loc, new ItemStack(Material.BONE, 10));
 			player.getWorld().dropItemNaturally(a_loc, new ItemStack(Material.BLAZE_POWDER, rnd.nextInt(2)));
 			player.getWorld().dropItemNaturally(a_loc, new ItemStack(Material.GLASS, rnd.nextInt(17)));
-			giveCooldown(player, "ClassBook", 15);
+			giveCooldown(player, "ClassBook", this.getConfigurableCooldown("AlchemistClassCooldown", 15));
 			break;
 		case TAILOR:
 			ItemStack t_cost = new ItemStack(Material.INK_SACK);
@@ -267,7 +267,7 @@ public class Classbook extends CustomItem {
 			player.getWorld().dropItemNaturally(t_loc, new ItemStack(Material.GOLD_ORE, 10));
 			player.getWorld().dropItemNaturally(t_loc, new ItemStack(Material.BONE, rnd.nextInt(5)));
 			
-			giveCooldown(player, "ClassBook", 10);
+			giveCooldown(player, "ClassBook", this.getConfigurableCooldown("TailorrClassCooldown", 15));
 			break;
 		default:
 			break;

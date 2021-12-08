@@ -16,7 +16,4 @@ Settings:
    #Do not set this to the same world as in your server.properties it will cause problems!
    WorldName: RDvZ_World
    LobbyName: RDvZ_Lobby
-   Cooldowns:
-       ItemA: 40 #Time in seconds
-       ItemB: 10
-       ItemC: 5
+   Cooldowns: {} #Note: Cooldowns are added as they are used, so you will have to use each item atleast once to see the cooldown times

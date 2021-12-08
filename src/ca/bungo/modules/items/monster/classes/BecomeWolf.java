@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +29,7 @@ public class BecomeWolf extends CustomItem {
 	}
 
 	@Override
+	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		ItemStack item = player.getInventory().getItemInMainHand();
@@ -37,9 +39,9 @@ public class BecomeWolf extends CustomItem {
 			return;
 		giveCooldown(player, "BecomeMonster", 1);
 		
+		event.setCancelled(true);
 		if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			this.onRightclickItem(player);
-			event.setCancelled(true);
 			return;
 		}
 		

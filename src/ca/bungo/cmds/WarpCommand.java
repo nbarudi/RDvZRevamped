@@ -37,6 +37,7 @@ public class WarpCommand implements CommandExecutor {
 			}
 			Warp warp = pl.wm.getWarp(args[1]);
 			if(warp == null) {
+				//Only I am stupid enough to HARD CODE an 'Error Code' that means literally nothing.... Bungo Moment
 				player.sendMessage(ChatManager.formatColor("&cSeems something went wrong.. &eContact nbarudi on discord and report this issue: &bnbarudi#0001\n &cError Code: 224"));
 				return true;
 			}
@@ -67,6 +68,7 @@ public class WarpCommand implements CommandExecutor {
 			}
 			Warp warp = pl.wm.getWarp(args[1]);
 			if(warp == null) {
+				//Only I am stupid enough to HARD CODE an 'Error Code' that means literally nothing.... Bungo Moment
 				player.sendMessage(ChatManager.formatColor("&cSeems something went wrong.. &eContact nbarudi on discord and report this issue: &bnbarudi#0001\n &cError Code: 224"));
 				return true;
 			}
@@ -79,6 +81,7 @@ public class WarpCommand implements CommandExecutor {
 		else {
 			Warp warp = pl.wm.getWarp(args[0]);
 			if(warp == null) {
+				//Only I am stupid enough to HARD CODE an 'Error Code' that means literally nothing.... Bungo Moment
 				player.sendMessage(ChatManager.formatColor("&cSeems something went wrong.. &eContact nbarudi on discord and report this issue: &bnbarudi#0001\n &cError Code: 224"));
 				return true;
 			}
