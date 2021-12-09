@@ -35,7 +35,7 @@ public class CakeSpawner extends CustomItem{
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		ItemStack item = player.getInventory().getItemInMainHand();
-		if(!verifyItem(item, this.getItemMeta().getDisplayName()))
+		if(!verifyItem(item, this))
 			return;
 		if(onCooldown(player, "CakeSummon")) {
 			event.setCancelled(true);

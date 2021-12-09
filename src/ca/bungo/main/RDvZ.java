@@ -33,6 +33,11 @@ import ca.bungo.modules.items.dwarf.potions.HealingPotion;
 import ca.bungo.modules.items.dwarf.potions.SpeedPotion;
 import ca.bungo.modules.items.dwarf.potions.StrengthPotion;
 import ca.bungo.modules.items.monster.MonsterclassClaim;
+import ca.bungo.modules.items.monster.abilities.BroodBreakAbility;
+import ca.bungo.modules.items.monster.abilities.CreeperExplosionAbility;
+import ca.bungo.modules.items.monster.abilities.EndermanBlinkAbility;
+import ca.bungo.modules.items.monster.abilities.SpiderPoisonAbility;
+import ca.bungo.modules.items.monster.abilities.SuicideAbility;
 import ca.bungo.modules.items.monster.abilities.WolfJumpAbility;
 import ca.bungo.modules.items.monster.classes.BecomeBroodMother;
 import ca.bungo.modules.items.monster.classes.BecomeCreeper;
@@ -129,7 +134,12 @@ public class RDvZ extends JavaPlugin {
     	customItems.add(new BecomeBroodMother(this));
     	customItems.add(new BecomeEnderman(this));
     	
+    	customItems.add(new SuicideAbility(this, Material.GHAST_TEAR));
+    	customItems.add(new CreeperExplosionAbility(this, Material.SULPHUR));
+    	customItems.add(new SpiderPoisonAbility(this, Material.SPIDER_EYE));
     	customItems.add(new WolfJumpAbility(this, Material.SUGAR));
+    	customItems.add(new BroodBreakAbility(this, Material.SLIME_BALL));
+    	customItems.add(new EndermanBlinkAbility(this, Material.EYE_OF_ENDER));
     	
     	//Dragon
     }

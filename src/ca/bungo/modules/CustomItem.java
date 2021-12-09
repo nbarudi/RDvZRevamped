@@ -66,10 +66,10 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		player.sendMessage(ChatColor.BLUE + "You are currently using: " + ChatColor.YELLOW + this.name);
 	}
 	
-	public boolean verifyItem(ItemStack item, String name) {
-		if(item == null || item.getItemMeta() == null || item.getItemMeta().getDisplayName() == null)
+	public boolean verifyItem(ItemStack item, ItemStack toComp) {
+		if(item == null || item.getItemMeta() == null)
 			return false;
-		return item.getItemMeta().getDisplayName().equals(name);
+		return item.getItemMeta().equals(toComp.getItemMeta());
 	}
 	
 	public double getConfigurableCooldown(String name, double def) {
@@ -87,8 +87,30 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		}else {
 			return mSec.getDouble(name);
 		}
-			
+	}
+	
+	/**
+	 * Get a configuration setting casted to the object supplied
+	 * @implNote This is only really intended to be used with Strings / Booleans / Other Base Data Types since other class types like Locations are not formatted correctly to be used here.
+	 * @parma name -> String value stating the Config Path to your setting
+	 * @param def -> Default value if the path doesn't already exist
+	 * @param type -> Class type of the setting you are obtaining
+	 * @return Object obtained from config
+	 * */
+	public Object getConfigSetting(String name, Object def, Class<?> type) {
+		pl.fm.reloadConfig("config.yml");
+		YamlConfiguration cfg = pl.fm.getConfig("config.yml").get();
+		ConfigurationSection mSec = cfg.getConfigurationSection("Settings");
+		if(mSec == null)
+			mSec = cfg.createSection("Settings");
 		
+		if(mSec.get(name) == null) {
+			mSec.set(name, type.cast(def));
+			pl.fm.saveConfig("config.yml");
+			return type.cast(def);
+		}else {
+			return mSec.get(name);
+		}
 	}
 
 }

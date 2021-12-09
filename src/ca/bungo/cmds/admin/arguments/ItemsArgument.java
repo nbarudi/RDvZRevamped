@@ -42,7 +42,7 @@ public class ItemsArgument extends AdminArgument{
 			return;
 		if(event.getInventory().getName() == inv.getName()) {
 			event.setCancelled(true);
-			if(event.getCurrentItem() != null) {
+			if(event.getCurrentItem() != null && event.getCurrentItem().getItemMeta() != null && event.getCurrentItem().getItemMeta().getDisplayName() != null) {
 				Player player = (Player) event.getWhoClicked();
 				player.getInventory().addItem(event.getCurrentItem());
 				player.sendMessage(ChatColor.BLUE + "Given item: " + event.getCurrentItem().getItemMeta().getDisplayName());

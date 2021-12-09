@@ -47,7 +47,7 @@ public class StrengthPotion extends CustomItem {
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		ItemStack item = player.getInventory().getItemInMainHand();
-		if(!verifyItem(item, this.getItemMeta().getDisplayName()))
+		if(!verifyItem(item, this))
 			return;
 		if(onCooldown(player, "StrengthPotion")) {
 			event.setCancelled(true);

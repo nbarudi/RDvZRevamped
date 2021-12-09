@@ -13,6 +13,7 @@ import ca.bungo.cmds.admin.arguments.DataArgument;
 import ca.bungo.cmds.admin.arguments.ItemsArgument;
 import ca.bungo.cmds.admin.arguments.MoreArgument;
 import ca.bungo.cmds.admin.arguments.PunishArgument;
+import ca.bungo.cmds.admin.arguments.ReleaseMonstersArgument;
 import ca.bungo.cmds.admin.arguments.ReloadArgument;
 import ca.bungo.cmds.admin.arguments.RestartArgument;
 import ca.bungo.cmds.admin.arguments.StartArgument;
@@ -38,6 +39,7 @@ public class AdminCommand implements CommandExecutor {
     	arguments.add(new ReloadArgument(plugin, "reload"));
     	arguments.add(new StartArgument(plugin, "start"));
     	arguments.add(new DataArgument(plugin, "data"));
+    	arguments.add(new ReleaseMonstersArgument(plugin, "release"));
     	
     	aa = new PunishArgument(plugin, "manage");
     	arguments.add(aa);
