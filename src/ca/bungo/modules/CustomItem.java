@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,18 +26,20 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		this.pl = pl;
 	}
 	
+	public CustomItem(RDvZ pl, Material material, short data) {
+		super(material, 1, data);
+		this.pl = pl;
+	}
+	
 	@EventHandler
 	public abstract void onInteract(PlayerInteractEvent event);
 	
 	@EventHandler
 	public void onDrop(PlayerDropItemEvent event) {
-		Item item = event.getItemDrop();
-		if(item == null)
+		ItemStack dropped = event.getItemDrop().getItemStack();
+		if(!verifyItem(this, dropped))
 			return;
-		if(item.getCustomName() == null)
-			return;
-		if(item.getCustomName().equals(this.getItemMeta().getDisplayName()))
-			event.setCancelled(canDrop);
+		event.setCancelled(true);
 	}
 	
 	public boolean onCooldown(Player player, String name) {
@@ -67,9 +68,9 @@ public abstract class CustomItem extends ItemStack implements Listener {
 	}
 	
 	public boolean verifyItem(ItemStack item, ItemStack toComp) {
-		if(item == null || item.getItemMeta() == null)
+		if(item == null || item.getData() == null || item.getItemMeta() == null || item.getItemMeta().getDisplayName() == null)
 			return false;
-		return item.getItemMeta().equals(toComp.getItemMeta());
+		return (item.getType().equals(toComp.getType()) && item.getItemMeta().getDisplayName().equals(toComp.getItemMeta().getDisplayName()));
 	}
 	
 	public double getConfigurableCooldown(String name, double def) {

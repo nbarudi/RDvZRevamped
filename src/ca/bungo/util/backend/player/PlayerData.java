@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import ca.bungo.main.RDvZ;
 import ca.bungo.util.ChatManager;
 import ca.bungo.util.backend.cooldown.Cooldown;
+import ca.bungo.util.backend.player.heros.Hero;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -28,6 +29,7 @@ public class PlayerData {
 	public static enum MonsterClass  {
 		NONE, ZOMBIE, SKELETON, CREEPER, SPIDER, WOLF, IRONGOLEM, BROODMOTHER, ENDERMAN
 	}
+	
 	
 	private RDvZ instance;
 	
@@ -44,6 +46,7 @@ public class PlayerData {
 	
 	public boolean isDwarf = false;
 	public boolean isHero = false;
+	public boolean hasGodMode = false;
 	public boolean claimedClasses = false;
 	
 	private boolean isOnline = true;
@@ -52,6 +55,7 @@ public class PlayerData {
 	
 	private DwarfClass dwarfClass = DwarfClass.NONE;
 	private MonsterClass monsterClass = MonsterClass.NONE;
+	private Hero currentHero = null;
 	
 	private int mana;
 	private int maxMana = 1000;
@@ -269,6 +273,16 @@ public class PlayerData {
 		cDisg = null;
 	}
 	
+	public Hero getCurrentHero() {
+		return currentHero;
+	}
+
+
+	public void setCurrentHero(Hero currentHero) {
+		this.currentHero = currentHero;
+	}
+
+
 	@Override
 	public String toString() {
 		String toRet = "" + ChatColor.BLUE;

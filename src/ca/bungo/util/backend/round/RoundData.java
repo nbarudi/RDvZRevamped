@@ -18,8 +18,12 @@ public class RoundData {
 	private boolean monstersReleased = false;
 	private boolean shrineDestroyed = false;
 	
-	//private RDvZ pl;
+	private String dragonUUID = "";
+	private String grappledUUID = "";
 	
+	//private RDvZ pl;
+
+
 	public String worldName = "RDvZ_World";
 	
 	private List<PlayerData> playerData = new ArrayList<>();
@@ -93,6 +97,22 @@ public class RoundData {
 	
 	public World getWorld() {
 		return Bukkit.getWorld(worldName);
+	}
+	
+	public String getDragonUUID() {
+		return dragonUUID;
+	}
+
+	public void setDragonUUID(String dragonUUID) {
+		this.dragonUUID = dragonUUID;
+	}
+
+	public String getGrappledUUID() {
+		return grappledUUID;
+	}
+
+	public void setGrappledUUID(String grappledUUID) {
+		this.grappledUUID = grappledUUID;
 	}
 }
 	

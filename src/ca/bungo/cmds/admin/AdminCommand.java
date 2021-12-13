@@ -17,6 +17,7 @@ import ca.bungo.cmds.admin.arguments.ReleaseMonstersArgument;
 import ca.bungo.cmds.admin.arguments.ReloadArgument;
 import ca.bungo.cmds.admin.arguments.RestartArgument;
 import ca.bungo.cmds.admin.arguments.StartArgument;
+import ca.bungo.cmds.admin.arguments.VanishArgument;
 import ca.bungo.cmds.admin.arguments.WorldArgument;
 import ca.bungo.main.RDvZ;
 
@@ -40,6 +41,7 @@ public class AdminCommand implements CommandExecutor {
     	arguments.add(new StartArgument(plugin, "start"));
     	arguments.add(new DataArgument(plugin, "data"));
     	arguments.add(new ReleaseMonstersArgument(plugin, "release"));
+    	arguments.add(new VanishArgument(plugin, "vanish"));
     	
     	aa = new PunishArgument(plugin, "manage");
     	arguments.add(aa);

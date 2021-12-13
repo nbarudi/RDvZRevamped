@@ -18,8 +18,12 @@ import ca.bungo.cmds.admin.AdminCommand;
 import ca.bungo.events.EnchantingEventStuff;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
+import ca.bungo.modules.events.DamageHandler;
 import ca.bungo.modules.events.monster.AntiPickup;
 import ca.bungo.modules.events.monster.NoFallDamage;
+import ca.bungo.modules.items.dragon.DragonBreath;
+import ca.bungo.modules.items.dragon.DragonCave;
+import ca.bungo.modules.items.dragon.DragonClaws;
 import ca.bungo.modules.items.dwarf.CakeSpawner;
 import ca.bungo.modules.items.dwarf.ClassClaimItem;
 import ca.bungo.modules.items.dwarf.Classbook;
@@ -50,7 +54,9 @@ import ca.bungo.modules.items.monster.classes.BecomeZombie;
 import ca.bungo.util.CommandUtils;
 import ca.bungo.util.FileManager;
 import ca.bungo.util.backend.cooldown.CooldownManager;
+import ca.bungo.util.backend.player.HeroManager;
 import ca.bungo.util.backend.player.PlayerManager;
+import ca.bungo.util.backend.player.heros.dragonWarrior.items.DragonFireball;
 import ca.bungo.util.backend.round.RoundData;
 import ca.bungo.util.backend.warps.WarpManager;
 
@@ -60,6 +66,7 @@ public class RDvZ extends JavaPlugin {
     public CooldownManager cm;
     public CommandUtils cu;
     public WarpManager wm;
+    public HeroManager hm;
     
     public static List<CustomItem> customItems = new ArrayList<>();
     public ArrayList<EnchantingInventory> inventories;
@@ -97,6 +104,7 @@ public class RDvZ extends JavaPlugin {
         cm = new CooldownManager(this);
         cu = new CommandUtils(this);
         wm = new WarpManager(this);
+        hm = new HeroManager(this);
     }
 
     @Override
@@ -116,10 +124,13 @@ public class RDvZ extends JavaPlugin {
     	customItems.add(new BakerClass(this, Material.RECORD_11));
     	customItems.add(new AlchemistClass(this, Material.RECORD_12));
     	customItems.add(new Classbook(this, Material.BOOK));
+    	
+    	//	Potions
     	customItems.add(new HealingPotion(this, Material.POTION));
     	customItems.add(new SpeedPotion(this, Material.POTION));
     	customItems.add(new FirePotion(this, Material.POTION));
     	customItems.add(new StrengthPotion(this, Material.POTION));
+    	//	Other
     	customItems.add(new CakeSpawner(this, Material.EMERALD));
     	
     	//Monster
@@ -142,6 +153,14 @@ public class RDvZ extends JavaPlugin {
     	customItems.add(new EndermanBlinkAbility(this, Material.EYE_OF_ENDER));
     	
     	//Dragon
+    	customItems.add(new DragonClaws(this, Material.SHEARS));
+    	customItems.add(new DragonBreath(this, Material.INK_SACK));
+    	customItems.add(new DragonCave(this, Material.REDSTONE));
+    	
+    	//Hero Items
+    	
+    	//	Dragon Warrior
+    	customItems.add(new DragonFireball(this, Material.FIREBALL));
     }
 
     private void registerCommands(){
@@ -160,6 +179,7 @@ public class RDvZ extends JavaPlugin {
     	pm.registerEvents(new EnchantingEventStuff(this), this);
     	pm.registerEvents(new AntiPickup(this), this);
     	pm.registerEvents(new NoFallDamage(this), this);
+    	pm.registerEvents(new DamageHandler(this), this);
     }
 
     private void registerConfigs(){
