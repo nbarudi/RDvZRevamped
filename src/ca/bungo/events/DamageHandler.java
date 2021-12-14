@@ -1,4 +1,4 @@
-package ca.bungo.modules.events;
+package ca.bungo.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,7 +34,8 @@ public class DamageHandler implements Listener {
 		//Dragon Damage Negation
 		if(pl.currentRound.getDragonUUID() == "")
 			return;
-		else if(player.getUniqueId().toString().equals(pl.currentRound.getDragonUUID())) {
+		//Dragon warrior should have the same immunities the Dragon does.. AKA: People die to their own fireballs 90% of the time and this will stop that from happening
+		else if(player.getUniqueId().toString().equals(pl.currentRound.getDragonUUID()) || data.getCurrentHero().getName().equals("Dragon Warrior")) {
 			if(event.getCause().equals(DamageCause.FIRE) || event.getCause().equals(DamageCause.FIRE_TICK)) {
 				event.setDamage(0);
 				event.setCancelled(true);

@@ -83,9 +83,6 @@ public class KillTheMetas implements Listener {
 		
 		Player damager = (Player)event.getDamager();
 		
-		//if(damager.isOp())
-		//	event.setDamage(99999);
-		
 		if(damager.getInventory().getItemInMainHand().getType().toString().toLowerCase().contains("axe")) {
 			event.setDamage(0);
 			damager.sendMessage("§cSorry! Axes are 'a little' too OP for combat! Good Luck!");

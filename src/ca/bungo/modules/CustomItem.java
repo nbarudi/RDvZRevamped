@@ -39,7 +39,7 @@ public abstract class CustomItem extends ItemStack implements Listener {
 		ItemStack dropped = event.getItemDrop().getItemStack();
 		if(!verifyItem(this, dropped))
 			return;
-		event.setCancelled(true);
+		event.setCancelled(!canDrop);
 	}
 	
 	public boolean onCooldown(Player player, String name) {

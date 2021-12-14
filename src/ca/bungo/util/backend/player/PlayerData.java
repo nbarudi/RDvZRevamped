@@ -62,6 +62,7 @@ public class PlayerData {
 	
 	public PlayerData(RDvZ instance, String name) {
 		this.name = name;
+		this.nick = name;
 		this.instance = instance;
 		
 		this.key = new PlayerManager.RandomString().nextString();
@@ -118,6 +119,50 @@ public class PlayerData {
 		}, 20, 20);
 
 		tasks.put("Blindness", temptask);
+		
+		if(!tasks.containsKey("TabName")) {
+			temptask = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, ()->{
+				
+				Player player = Bukkit.getPlayer(name);
+				if(!instance.currentRound.isGameStarted()) {
+					this.nick = name;
+				}
+				else if(isDwarf && dwarfClass != DwarfClass.NONE && !isHero) {
+					switch(dwarfClass) {
+					case ALCHEMIST:
+						this.nick = name + ChatColor.BLUE + " the Alchemist";
+						break;
+					case BAKER:
+						this.nick = name + ChatColor.BLUE + " the Baker";
+						break;
+					case BUILDER:
+						this.nick = name + ChatColor.BLUE + " the Builder";
+						break;
+					case ENCHANTER:
+						this.nick = name + ChatColor.BLUE + " the Enchanter";
+						break;
+					case SMITH:
+						this.nick = name + ChatColor.BLUE + " the BlackSmith";
+						break;
+					case TAILOR:
+						this.nick = name + ChatColor.BLUE + " the Tailor";
+						break;
+					default:
+						break;
+					}
+				}
+				else if(isHero) {
+					this.nick = name + getCurrentHero().getColor() + getCurrentHero().getSuffix();
+				}else if(!monsterClass.equals(MonsterClass.NONE)) {
+					this.nick = name + ChatColor.DARK_RED + " the Monster";
+				}else {
+					this.nick = name;
+				}
+				player.setPlayerListName(nick);
+			}, 10, 10);
+			tasks.put("TabName", temptask);
+		}
+		
 	}
 	
 	

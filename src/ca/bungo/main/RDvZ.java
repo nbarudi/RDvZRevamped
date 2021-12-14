@@ -15,10 +15,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import ca.bungo.cmds.WarpCommand;
 import ca.bungo.cmds.admin.AdminCommand;
+import ca.bungo.events.ChatHandler;
+import ca.bungo.events.DamageHandler;
 import ca.bungo.events.EnchantingEventStuff;
+import ca.bungo.events.KillTheMetas;
 import ca.bungo.events.PlayerJoinLeave;
 import ca.bungo.modules.CustomItem;
-import ca.bungo.modules.events.DamageHandler;
 import ca.bungo.modules.events.monster.AntiPickup;
 import ca.bungo.modules.events.monster.NoFallDamage;
 import ca.bungo.modules.items.dragon.DragonBreath;
@@ -180,6 +182,8 @@ public class RDvZ extends JavaPlugin {
     	pm.registerEvents(new AntiPickup(this), this);
     	pm.registerEvents(new NoFallDamage(this), this);
     	pm.registerEvents(new DamageHandler(this), this);
+    	pm.registerEvents(new ChatHandler(this), this);
+    	pm.registerEvents(new KillTheMetas(this), this);
     }
 
     private void registerConfigs(){
