@@ -12,6 +12,7 @@ import ca.bungo.util.backend.player.PlayerData;
 
 public class ChatHandler implements Listener {
 	
+	//Just a refrence to the Main Plugin Class incase needed
 	RDvZ pl;
 	
 	public ChatHandler(RDvZ pl) {
